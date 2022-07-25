@@ -1,7 +1,6 @@
 {
   "name": "crypto_app",
   "version": "1.0.0",
-  "description": "",
   "main": "main.js",
   "scripts": {
     "start": "electron ."
@@ -9,6 +8,16 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "electron": "^19.0.9"
-  }
+    "electron": "11.4.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gVelezCasas/electron_firts_app.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/gVelezCasas/electron_firts_app/issues"
+  },
+  "homepage": "https://github.com/gVelezCasas/electron_firts_app#readme",
+  "description": ""
 }
