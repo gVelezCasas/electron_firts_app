@@ -1,27 +1,26 @@
 //* main.js
 
 //* Modules to control application life and create native browser window
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu, webContents } = require('electron')
 const path = require('path')
 const url = require('url')
 const shell = require('electron').shell
+const ipc = require('electron').ipcMain
 
-
+let mainWindow;
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  mainWindow = new BrowserWindow({
     width: 800,
     height: 600,
     webPreferences: {
       nodeIntegration: true,
-      contextIsolation: false,
       enableRemoteModule: true,
     },
   })
 
   //* and load the index.html of the app.
   mainWindow.loadFile('src/index.html')
-  //mainWindow.webContents.openDevTools()
   //* Open the DevTools.
   //* mainWindow.webContents.openDevTools()
   let menu = Menu.buildFromTemplate([
@@ -77,6 +76,8 @@ app.whenReady().then(() => {
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') app.quit()
 })
-
+ipc.on('update-notify-value',function (e,arg){
+  mainWindow.webContents.send('targetPriceVal',arg)
+})
 //* In this file you can include the rest of your app's specific main process
 //* code. Tu también puedes ponerlos en archivos separados y requerirlos aquí.
